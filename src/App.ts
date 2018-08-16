@@ -1,21 +1,17 @@
 import express from 'express'
 
+const apiRoutes = require('./routes/api')
+
 class App {
     public express
 
-    constructor () {
+    constructor() {
         this.express = express()
         this.mountRoutes()
     }
 
-    private mountRoutes (): void {
-        const router = express.Router()
-        router.get('/', (req, res) => {
-            res.json({
-                message: 'Hello World!'
-            })
-        })
-        this.express.use('/', router)
+    private mountRoutes(): void {
+        this.express.use('/api/v1', apiRoutes)
     }
 }
 
