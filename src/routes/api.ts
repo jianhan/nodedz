@@ -1,10 +1,11 @@
-import express, {Request, Response} from "express"
+module.exports = function (app, passport) {
+// send to google to do the authentication
+    app.get('/oauth2/google', passport.authenticate('google', {scope: ['profile', 'email']}));
 
-const router = express.Router()
+// the callback after google has authenticated the user
+    app.get('/oauth2/google/callback', passport.authenticate('google', {
+        successRedirect: '/profile',
+        failureRedirect: '/'
+    }));
+}
 
-// define the home page route
-router.post('/login', (req: Request, res: Response) => {
-    res.send('login')
-})
-
-module.exports = router

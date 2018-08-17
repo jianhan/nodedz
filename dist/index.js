@@ -1,14 +1,29 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const App_1 = __importDefault(require("./App"));
-const port = process.env.PORT || 3000;
-App_1.default.listen(port, (err) => {
-    if (err) {
-        return console.log(err);
-    }
-    return console.log(`server is listening on ${port}`);
-});
+//  index.js
+// set up ======================================================================
+// get all the tools we need
+require('dotenv-safe').config();
+var express = require('express');
+var app = express();
+var port = process.env.PORT || 8080;
+var mongoose = require('mongoose');
+var passport = require('passport');
+var morgan = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+// configuration ===============================================================
+mongoose.connect(process.env.MONGODB_URL); // connect to our database
+require('./configs/passport')(passport); // pass passport for configuration
+// set up our express application
+app.use(morgan('dev')); // log every request to the console
+app.use(cookieParser()); // read cookies (needed for auth)
+app.use(bodyParser.json()); // get information from html forms
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+// routes ======================================================================
+require('./routes/api')(app, passport); // load our routes and pass in our app and fully configured passport
+// launch ======================================================================
+app.listen(port);
+console.log('The magic happens on port ' + port);
 //# sourceMappingURL=index.js.map
