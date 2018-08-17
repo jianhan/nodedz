@@ -1,7 +1,8 @@
 import { Document, Model, Schema } from "mongoose";
 import IUser from "./user.interface";
 export interface IUserModel extends IUser, Document {
-    fullName(): string;
+    generateHash(password: string): string;
+    validPassword(password: string): string;
 }
 export declare let UserSchema: Schema;
 export declare const User: Model<IUserModel>;

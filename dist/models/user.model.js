@@ -41,9 +41,6 @@ exports.UserSchema = new mongoose_1.Schema({
     timestamps: true
 });
 exports.UserSchema.plugin(mongoose_unique_validator_1.default);
-exports.UserSchema.methods.fullName = function () {
-    return (this.firstName.trim() + " " + this.lastName.trim());
-};
 // generating a hash
 exports.UserSchema.methods.generateHash = function (password) {
     return bcrypt_nodejs_1.default.hashSync(password, bcrypt_nodejs_1.default.genSaltSync(8), null);

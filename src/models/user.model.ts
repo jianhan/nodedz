@@ -4,7 +4,8 @@ import uniqueValidator from 'mongoose-unique-validator'
 import bcrypt from 'bcrypt-nodejs'
 
 export interface IUserModel extends IUser, Document {
-    fullName(): string;
+    generateHash(password: string): string
+    validPassword(password: string): string
 }
 
 export let UserSchema: Schema = new Schema({
@@ -45,18 +46,14 @@ export let UserSchema: Schema = new Schema({
 
 UserSchema.plugin(uniqueValidator)
 
-UserSchema.methods.fullName = function (): string {
-    return (this.firstName.trim() + " " + this.lastName.trim());
-};
-
 // generating a hash
-UserSchema.methods.generateHash = function (password) {
+UserSchema.methods.generateHash = function (password: string): string {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-};
+}
 
 // checking if password is valid
-UserSchema.methods.validPassword = function (password) {
+UserSchema.methods.validPassword = function (password: string): string {
     return bcrypt.compareSync(password, this.local.password);
-};
+}
 
 export const User: Model<IUserModel> = model<IUserModel>("User", UserSchema);
