@@ -1,11 +1,15 @@
-module.exports = function (app, passport) {
-// send to google to do the authentication
-    app.get('/oauth2/google', passport.authenticate('google', {scope: ['profile', 'email']}));
+import express from 'express'
 
-// the callback after google has authenticated the user
-    app.get('/oauth2/google/callback', passport.authenticate('google', {
+module.exports = function (app, passport) {
+    const router = express.Router();
+    // send to google to do the authentication
+    router.get('/oauth2/google', passport.authenticate('google', {scope: ['profile', 'email']}));
+
+    // the callback after google has authenticated the user
+    router.get('/oauth2/google/callback', passport.authenticate('google', {
         successRedirect: '/profile',
         failureRedirect: '/'
     }));
-}
 
+    app.use('/api/v1', router)
+}
