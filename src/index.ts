@@ -12,7 +12,6 @@ const passport = require('passport');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const cookieSession = require('cookie-session')
 
 // configuration ===============================================================
 mongoose.connect(process.env.MONGODB_URL); // connect to our database
@@ -24,12 +23,6 @@ app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.json()); // get information from html forms
 app.use(bodyParser.urlencoded({extended: true}));
-
-// initialize cookie session
-app.use(cookieSession({
-    maxAge: 24 * 60 * 60 * 1000,
-    keys: ['put this in env']
-}))
 
 // initialize passport
 app.use(passport.initialize());

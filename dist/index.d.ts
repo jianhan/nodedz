@@ -6,5 +6,4 @@ declare const passport: any;
 declare const morgan: any;
 declare const cookieParser: any;
 declare const bodyParser: any;
-declare const cookieSession: any;
 //# sourceMappingURL=index.d.ts.map
