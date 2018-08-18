@@ -5,6 +5,7 @@ import bcrypt from 'bcrypt-nodejs'
 
 export interface IUserModel extends IUser, Document {
     generateHash(password: string): string
+
     validPassword(password: string): string
 }
 
@@ -56,4 +57,4 @@ UserSchema.methods.validPassword = function (password: string): string {
     return bcrypt.compareSync(password, this.local.password);
 }
 
-export const User: Model<IUserModel> = model<IUserModel>("User", UserSchema);
+export const User: Model<IUserModel> = model<IUserModel>('user', UserSchema);

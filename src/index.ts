@@ -4,14 +4,15 @@
 // get all the tools we need
 require('dotenv-safe').config();
 
-var express = require('express');
-var app = express();
-var port = process.env.PORT || 8080;
-var mongoose = require('mongoose');
-var passport = require('passport');
-var morgan = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+const express = require('express')
+const app = express();
+const port = process.env.PORT || 8080;
+const mongoose = require('mongoose');
+const passport = require('passport');
+const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const cookieSession = require('cookie-session')
 
 // configuration ===============================================================
 mongoose.connect(process.env.MONGODB_URL); // connect to our database
@@ -24,8 +25,16 @@ app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.json()); // get information from html forms
 app.use(bodyParser.urlencoded({extended: true}));
 
+// initialize cookie session
+app.use(cookieSession({
+    maxAge: 24 * 60 * 60 * 1000,
+    keys: ['put this in env']
+}))
+
+// initialize passport
 app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
+app.use(passport.session());
+
 
 // routes ======================================================================
 require('./routes/api')(app, passport); // load our routes and pass in our app and fully configured passport

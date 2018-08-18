@@ -1,9 +1,10 @@
-declare var express: any;
-declare var app: any;
-declare var port: string | number;
-declare var mongoose: any;
-declare var passport: any;
-declare var morgan: any;
-declare var cookieParser: any;
-declare var bodyParser: any;
+declare const express: any;
+declare const app: any;
+declare const port: string | number;
+declare const mongoose: any;
+declare const passport: any;
+declare const morgan: any;
+declare const cookieParser: any;
+declare const bodyParser: any;
+declare const cookieSession: any;
 //# sourceMappingURL=index.d.ts.map

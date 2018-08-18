@@ -49,5 +49,5 @@ exports.UserSchema.methods.generateHash = function (password) {
 exports.UserSchema.methods.validPassword = function (password) {
     return bcrypt_nodejs_1.default.compareSync(password, this.local.password);
 };
-exports.User = mongoose_1.model("User", exports.UserSchema);
+exports.User = mongoose_1.model('user', exports.UserSchema);
 //# sourceMappingURL=user.model.js.map

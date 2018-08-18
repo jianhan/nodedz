@@ -3,16 +3,23 @@
   <component name="ChangeListManager">
     <list default="true" id="f2dbfff7-0e78-4728-b270-ee9fc78da9d7" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/models/user.interface.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/models/user.interface.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/models/user.interface.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/models/user.interface.d.ts.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/models/user.model.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/models/user.model.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/index.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.d.ts.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/index.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/models/user.model.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/models/user.model.d.ts.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/models/user.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/models/user.model.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/models/user.model.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/models/user.model.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/configs/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/configs/auth.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/routes/api.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/dist/routes/api.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/routes/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/routes/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/routes/api.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/routes/api.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/configs/passport.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/configs/passport.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/user.interface.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/user.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/user.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/api.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -43,7 +50,7 @@
           <entry key="gitignore" value="2" />
           <entry key="js" value="2" />
           <entry key="json" value="8" />
-          <entry key="ts" value="14" />
+          <entry key="ts" value="16" />
           <entry key="yml" value="2" />
         </counts>
       </usages-collector>
@@ -54,7 +61,7 @@
           <entry key="JSON" value="5" />
           <entry key="JavaScript" value="2" />
           <entry key="PLAIN_TEXT" value="4" />
-          <entry key="TypeScript" value="14" />
+          <entry key="TypeScript" value="16" />
           <entry key="YAML" value="2" />
           <entry key="tsconfig" value="3" />
         </counts>
@@ -68,8 +75,8 @@
           <entry key="gitignore" value="43" />
           <entry key="js" value="280" />
           <entry key="json" value="587" />
-          <entry key="ts" value="11583" />
-          <entry key="txt" value="105" />
+          <entry key="ts" value="15447" />
+          <entry key="txt" value="136" />
           <entry key="yml" value="176" />
         </counts>
       </usages-collector>
@@ -79,8 +86,8 @@
           <entry key="Dockerfile" value="137" />
           <entry key="JSON" value="147" />
           <entry key="JavaScript" value="280" />
-          <entry key="PLAIN_TEXT" value="226" />
-          <entry key="TypeScript" value="11583" />
+          <entry key="PLAIN_TEXT" value="257" />
+          <entry key="TypeScript" value="15447" />
           <entry key="YAML" value="176" />
           <entry key="tsconfig" value="440" />
         </counts>
@@ -94,11 +101,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/routes/api.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="12" selection-start-line="12" selection-end-line="12" />
+            <state>
+              <caret column="38" selection-start-column="38" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/routes/auth.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="230">
+              <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -115,8 +131,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/index.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="422">
-              <caret line="30" column="24" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
+            <state relative-caret-position="483">
+              <caret line="39" selection-start-line="39" selection-end-line="39" />
             </state>
           </provider>
         </entry>
@@ -133,8 +149,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/models/user.model.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="38" selection-start-line="38" selection-end-line="38" />
+            <state relative-caret-position="376">
+              <caret line="52" selection-start-line="52" selection-end-line="52" />
               <folding>
                 <element signature="e#0#56#0" expanded="true" />
               </folding>
@@ -151,11 +167,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/configs/passport.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="111" column="66" selection-start-line="111" selection-start-column="66" selection-end-line="111" selection-end-column="66" />
+            <state relative-caret-position="138">
+              <caret line="151" column="18" selection-start-line="151" selection-start-column="18" selection-end-line="151" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -174,15 +190,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="606">
               <caret line="76" column="8" selection-start-line="76" selection-start-column="8" selection-end-line="76" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.env">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="39" selection-start-column="39" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -212,15 +219,16 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/tsconfig.json" />
         <option value="$PROJECT_DIR$/.env.example" />
-        <option value="$PROJECT_DIR$/src/index.ts" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/src/routes/birds.js" />
         <option value="$PROJECT_DIR$/src/routes/birds.ts" />
-        <option value="$PROJECT_DIR$/src/routes/api.ts" />
         <option value="$PROJECT_DIR$/src/configs/auth.ts" />
         <option value="$PROJECT_DIR$/src/models/user.interface.ts" />
         <option value="$PROJECT_DIR$/src/models/user.model.ts" />
         <option value="$PROJECT_DIR$/src/configs/passport.ts" />
+        <option value="$PROJECT_DIR$/src/routes/auth.ts" />
+        <option value="$PROJECT_DIR$/src/index.ts" />
+        <option value="$PROJECT_DIR$/src/routes/api.ts" />
       </list>
     </option>
   </component>
@@ -297,7 +305,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="settings.saveactions" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
   <component name="RunDashboard">
@@ -324,7 +332,7 @@
       <updated>1534298586397</updated>
       <workItem from="1534298588723" duration="4276000" />
       <workItem from="1534302885404" duration="4316000" />
-      <workItem from="1534309380282" duration="24732000" />
+      <workItem from="1534309380282" duration="31809000" />
     </task>
     <task id="LOCAL-00001" summary="[feat] Added docker file">
       <created>1534304882610</created>
@@ -354,11 +362,18 @@
       <option name="project" value="LOCAL" />
       <updated>1534511765116</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="[feat] Google callback works now">
+      <created>1534544928659</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1534544928659</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33324000" />
+    <option name="totallyTimeSpent" value="40401000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1533" height="875" extended-state="6" />
@@ -396,7 +411,8 @@
     <MESSAGE value="[feat] Added user model" />
     <MESSAGE value="[feat] Setup mongo and passport" />
     <MESSAGE value="[feat] Added prefix to route" />
-    <option name="LAST_COMMIT_MESSAGE" value="[feat] Added prefix to route" />
+    <MESSAGE value="[feat] Google callback works now" />
+    <option name="LAST_COMMIT_MESSAGE" value="[feat] Google callback works now" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/node_modules/tsconfig.json">
@@ -413,13 +429,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
           <caret line="1" column="28" selection-start-line="1" selection-start-column="28" selection-end-line="1" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -482,27 +491,6 @@
     <entry file="file://$PROJECT_DIR$/src/routes/birds.ts">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/configs/auth.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/routes/api.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="30" column="24" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/models/user.interface.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="138">
@@ -517,20 +505,55 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/configs/auth.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/configs/passport.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="151" column="18" selection-start-line="151" selection-start-column="18" selection-end-line="151" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/models/user.model.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="38" selection-start-line="38" selection-end-line="38" />
+        <state relative-caret-position="376">
+          <caret line="52" selection-start-line="52" selection-end-line="52" />
           <folding>
             <element signature="e#0#56#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/configs/passport.ts">
+    <entry file="file://$PROJECT_DIR$/src/routes/auth.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
-          <caret line="111" column="66" selection-start-line="111" selection-start-column="66" selection-end-line="111" selection-end-column="66" />
+          <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="39" selection-start-line="39" selection-end-line="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/routes/api.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="38" selection-start-column="38" selection-end-column="38" />
         </state>
       </provider>
     </entry>
