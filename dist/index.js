@@ -29,6 +29,17 @@ app.use(passport.initialize());
 app.use(passport.session());
 // setup routes
 require('./routes/api')(app, passport); // load our routes and pass in our app and fully configured passport
+// socket io
+const server = require('http').createServer(app);
+server.listen(3030);
+const io = require('socket.io')(server);
+io.on('connection', function (client) {
+    console.log('Client connected...');
+    client.on('join', function (data) {
+        console.log(data);
+        client.emit('messages', 'Hello from server');
+    });
+});
 // launch
 app.listen(port);
 console.log('The magic happens on port ' + port);
