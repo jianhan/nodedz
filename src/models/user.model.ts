@@ -51,6 +51,9 @@ export let UserSchema: Schema = new Schema({
                 type: String,
                 trim: true
             },
+            profile_data: {
+                type: Object
+            },
             last_logged_in_at: {
                 type: Date
             }
