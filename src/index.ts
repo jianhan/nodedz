@@ -16,7 +16,7 @@ const bodyParser = require('body-parser');
 // configuration ===============================================================
 mongoose.connect(process.env.MONGODB_URL); // connect to our database
 
-require('./configs/passport')(passport); // pass passport for configuration
+require('./passport/init')(passport); // pass passport for configuration
 
 // set up our express application
 app.use(morgan('dev')); // log every request to the console

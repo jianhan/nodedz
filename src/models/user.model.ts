@@ -50,11 +50,14 @@ export let UserSchema: Schema = new Schema({
             image_url: {
                 type: String,
                 trim: true
+            },
+            last_logged_in_at: {
+                type: Date
             }
         }
     },
     {
-        timestamps: true
+        timestamps: {createdAt: 'created_at', updatedAt: 'updated_at'}
     })
 
 UserSchema.plugin(uniqueValidator)
