@@ -1,9 +1,7 @@
-// load up the user model
 import {IUserModel, User} from '../models/user.model'
-// load all the things we need
-var LocalStrategy = require('passport-local').Strategy;
-var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-const configAuth = require('./auth'); // use this one for testing
+
+const LocalStrategy = require('passport-local').Strategy;
+const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 module.exports = function (passport) {
 
@@ -128,72 +126,87 @@ module.exports = function (passport) {
                     // user is logged in and already has a local account. Ignore signup. (You should log out before trying to create a new account, user!)
                     return done(null, req.user);
                 }
-
             });
-
         }));
 
     // =========================================================================
     // GOOGLE ==================================================================
     // =========================================================================
+    console.log(`${process.env.HOST}:${process.env.PORT}/${process.env.GOOGLE_AUTH_CALLBACK_URL}`)
     passport.use(new GoogleStrategy({
-            clientID: configAuth.googleAuth.clientID,
-            clientSecret: configAuth.googleAuth.clientSecret,
-            callbackURL: configAuth.googleAuth.callbackURL,
-            passReqToCallback: true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
-        },
-        function (req, token, refreshToken, profile, done) {
-            // asynchronous
-            // check if the user is already logged in
-            if (!req.user) {
-                User.findOne({'google.id': profile.id}, function (err, user) {
-                    if (err) {
-                        return done(err);
-                    }
-                    if (user) {
-                        // if there is a user id already but no token (user was linked at one point and then removed)
-                        if (!user.google.token) {
-                            user.google.token = token;
-                            user.google.name = profile.displayName;
-                            user.google.email = (profile.emails[0].value || '').toLowerCase(); // pull the first email
+        clientID: process.env.GOOGLE_AUTH_CLIENT_ID,
+        clientSecret: process.env.GOOGLE_AUTH_CLIENT_SECRET,
+        callbackURL: `${process.env.HOST}:${process.env.PORT}/${process.env.GOOGLE_AUTH_CALLBACK_URL}`,
+    }, async (token, refreshToken, profile, done) => {
+        // Should have full user profile over here
+        console.log('profile', profile);
+        console.log('accessToken', token);
+        console.log('refreshToken', refreshToken);
 
-                            user.save(function (err) {
-                                if (err)
-                                    return done(err);
-                                return done(null, user);
-                            });
-                        }
-                        return done(null, user);
-                    } else {
-                        var newUser = new User();
-                        newUser.google.id = profile.id;
-                        newUser.google.token = token;
-                        newUser.google.name = profile.displayName;
-                        newUser.google.email = (profile.emails[0].value || '').toLowerCase();
-                        newUser.save(function (err) {
-                            if (err)
-                                return done(err)
+        const existingUser = await User.findOne({"google.id": profile.id});
+        if (existingUser) {
+            return done(null, existingUser);
+        }
 
-                            return done(null, newUser)
-                        });
-                    }
-                });
+        let newUser = new User();
+        newUser.google.id = profile.id;
+        newUser.google.token = token;
+        newUser.google.name = profile.displayName;
+        newUser.google.email = (profile.emails[0].value || '').toLowerCase();
+        await newUser.save();
+        done(null, newUser);
 
-            } else {
-                // user already exists and is logged in, we have to link accounts
-                var user = req.user; // pull the user out of the session
-
-                user.google.id = profile.id;
-                user.google.token = token;
-                user.google.name = profile.displayName;
-                user.google.email = (profile.emails[0].value || '').toLowerCase(); // pull the first email
-
-                user.save(function (err) {
-                    if (err)
-                        return done(err);
-
-                    return done(null, user);
-                });
-            }
-        }));
+        // // asynchronous
+        // // check if the user is already logged in
+        // if (!req.user) {
+        //     User.findOne({'google.id': profile.id}, function (err, user) {
+        //         if (err) {
+        //             return done(err);
+        //         }
+        //         if (user) {
+        //             // if there is a user id already but no token (user was linked at one point and then removed)
+        //             if (!user.google.token) {
+        //                 user.google.token = token;
+        //                 user.google.name = profile.displayName;
+        //                 user.google.email = (profile.emails[0].value || '').toLowerCase(); // pull the first email
+        //
+        //                 user.save(function (err) {
+        //                     if (err)
+        //                         return done(err);
+        //                     return done(null, user);
+        //                 });
+        //             }
+        //             return done(null, user);
+        //         } else {
+        //             var newUser = new User();
+        //             newUser.google.id = profile.id;
+        //             newUser.google.token = token;
+        //             newUser.google.name = profile.displayName;
+        //             newUser.google.email = (profile.emails[0].value || '').toLowerCase();
+        //             newUser.save(function (err) {
+        //                 if (err)
+        //                     return done(err)
+        //
+        //                 return done(null, newUser)
+        //             });
+        //         }
+        //     });
+        //
+        // } else {
+        //     // user already exists and is logged in, we have to link accounts
+        //     var user = req.user; // pull the user out of the session
+        //
+        //     user.google.id = profile.id;
+        //     user.google.token = token;
+        //     user.google.name = profile.displayName;
+        //     user.google.email = (profile.emails[0].value || '').toLowerCase(); // pull the first email
+        //
+        //     user.save(function (err) {
+        //         if (err)
+        //             return done(err);
+        //
+        //         return done(null, user);
+        //     });
+        // }
+    }));
 };

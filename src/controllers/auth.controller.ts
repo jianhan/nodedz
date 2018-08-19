@@ -1,22 +1,20 @@
 ///<reference path="../../node_modules/@types/node/index.d.ts"/>
-const JWT = require('jsonwebtoken');
-const User = require('../models/user.model');
+import {IUserModel} from "../models/user.model";
 import {NextFunction, Request, Response} from 'express';
 
-const signToken = user => {
-    return JWT.sign({
-        iss: process.env.JWT_ISS,
-        sub: user.id,
-        iat: new Date().getTime(), // current time
-        exp: new Date().setDate(new Date().getDate() + 1), // current time + 1 day ahead
-        saltLength: 10
-    }, process.env.JWT_SECRET);
-}
+const JWT = require('jsonwebtoken');
+const User = require('../models/user.model');
 
 class AuthController {
-    constructor() {
-        this.signUp = this.signUp.bind(this);
-        this.login = this.login.bind(this);
+
+    public static signToken(user: IUserModel): string {
+        return JWT.sign({
+            iss: process.env.JWT_ISS,
+            sub: user.id,
+            iat: new Date().getTime(), // current time
+            exp: new Date().setDate(new Date().getDate() + 1), // current time + 1 day ahead
+            saltLength: 10
+        }, process.env.JWT_SECRET)
     }
 
     public async signUp(req: Request, res: Response, next: NextFunction) {
@@ -38,7 +36,7 @@ class AuthController {
         await newUser.save();
 
         // Generate the token
-        const token = signToken(newUser);
+        const token = AuthController.signToken(newUser);
 
         // Respond with token
         res.status(200).json({token});
@@ -53,13 +51,13 @@ class AuthController {
      * @param next next func.
      */
     public async login(req: Request, res: Response, next: NextFunction) {
-        const token = signToken(req.user);
+        const token = AuthController.signToken(req.user)
         res.status(200).json({token});
     }
 
-    public async googleOAuth(req: Request, res: Response, next: NextFunction) {
-        const token = signToken(req.user);
-        res.status(200).json({token});
+    public async googleOAuthCallback(req: Request, res: Response, next: NextFunction) {
+        const token = AuthController.signToken(req.user)
+        res.status(200).json({token: token, user: req.user});
     }
 }
 

@@ -1,8 +1,6 @@
 export default interface IUser {
     // properties
-    email?: string;
-    firstName?: string;
-    lastName?: string;
+    local?: any;
 
     [propName: string]: any;
 }

@@ -32,9 +32,21 @@ exports.UserSchema = new mongoose_1.Schema({
             trim: true,
             match: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
         },
-        name: {
+        display_name: {
             type: String,
-            trim: true,
+            trim: true
+        },
+        family_name: {
+            type: String,
+            trim: true
+        },
+        given_name: {
+            type: String,
+            trim: true
+        },
+        image_url: {
+            type: String,
+            trim: true
         }
     }
 }, {
@@ -43,7 +55,7 @@ exports.UserSchema = new mongoose_1.Schema({
 exports.UserSchema.plugin(mongoose_unique_validator_1.default);
 // generating a hash
 exports.UserSchema.methods.generateHash = function (password) {
-    return bcrypt_nodejs_1.default.hashSync(password, bcrypt_nodejs_1.default.genSaltSync(8), null);
+    return bcrypt_nodejs_1.default.hashSync(password, bcrypt_nodejs_1.default.genSaltSync(8));
 };
 // checking if password is valid
 exports.UserSchema.methods.validPassword = function (password) {

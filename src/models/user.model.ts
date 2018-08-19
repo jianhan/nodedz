@@ -6,7 +6,7 @@ import bcrypt from 'bcrypt-nodejs'
 export interface IUserModel extends IUser, Document {
     generateHash(password: string): string
 
-    validPassword(password: string): string
+    validPassword(password: string): boolean
 }
 
 export let UserSchema: Schema = new Schema({
@@ -35,9 +35,21 @@ export let UserSchema: Schema = new Schema({
                 trim: true,
                 match: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
             },
-            name: {
+            display_name: {
                 type: String,
-                trim: true,
+                trim: true
+            },
+            family_name: {
+                type: String,
+                trim: true
+            },
+            given_name: {
+                type: String,
+                trim: true
+            },
+            image_url: {
+                type: String,
+                trim: true
             }
         }
     },
@@ -49,11 +61,11 @@ UserSchema.plugin(uniqueValidator)
 
 // generating a hash
 UserSchema.methods.generateHash = function (password: string): string {
-    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8));
 }
 
 // checking if password is valid
-UserSchema.methods.validPassword = function (password: string): string {
+UserSchema.methods.validPassword = function (password: string): boolean {
     return bcrypt.compareSync(password, this.local.password);
 }
 
