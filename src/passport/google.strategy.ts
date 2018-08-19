@@ -10,6 +10,11 @@ const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
  * @param profile
  */
 function profileToObject(token: string, refreshToken: string, profile: Profile): object {
+    // Should have full user profile over here
+    console.log('profile', profile);
+    console.log('accessToken', token);
+    console.log('refreshToken', refreshToken);
+
     return {
         'google.id': profile.id,
         'google.token': token,
@@ -19,6 +24,7 @@ function profileToObject(token: string, refreshToken: string, profile: Profile):
         'google.given_name': profile.name ? profile.name.givenName : '',
         'google.image_url': profile.photos ? profile.photos[0].value || '' : '',
         'google.profile_data': profile._json,
+        'google.last_logged_in_at': (new Date()).toISOString()
     }
 }
 
@@ -27,10 +33,6 @@ module.exports = new GoogleStrategy({
     clientSecret: process.env.GOOGLE_AUTH_CLIENT_SECRET,
     callbackURL: `${process.env.HOST}:${process.env.PORT}/${process.env.GOOGLE_AUTH_CALLBACK_URL}`,
 }, async (token: string, refreshToken: string, profile: Profile, done) => {
-    // Should have full user profile over here
-    console.log('profile', profile);
-    console.log('accessToken', token);
-    console.log('refreshToken', refreshToken);
 
     // find existing user and update all fields
     const existingUser = await User.findOne({"google.id": profile.id});
