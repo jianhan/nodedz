@@ -47,10 +47,16 @@ exports.UserSchema = new mongoose_1.Schema({
         image_url: {
             type: String,
             trim: true
+        },
+        profile_data: {
+            type: Object
+        },
+        last_logged_in_at: {
+            type: Date
         }
     }
 }, {
-    timestamps: true
+    timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' }
 });
 exports.UserSchema.plugin(mongoose_unique_validator_1.default);
 // generating a hash

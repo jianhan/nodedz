@@ -51,12 +51,12 @@ class AuthController {
      * @param next next func.
      */
     public async login(req: Request, res: Response, next: NextFunction) {
-        const token = AuthController.signToken(req.user)
+        const token = AuthController.signToken(req.user);
         res.status(200).json({token});
     }
 
     public async googleOAuthCallback(req: Request, res: Response, next: NextFunction) {
-        const token = AuthController.signToken(req.user)
+        const token = AuthController.signToken(req.user);
         res.status(200).json({token: token, user: req.user});
     }
 }

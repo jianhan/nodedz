@@ -3,12 +3,6 @@ import {Profile} from "passport-google-oauth";
 
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
-/**
- *
- * @param token
- * @param refreshToken
- * @param profile
- */
 function profileToObject(token: string, refreshToken: string, profile: Profile): object {
     // Should have full user profile over here
     console.log('profile', profile);
@@ -45,4 +39,4 @@ module.exports = new GoogleStrategy({
     let newUser = new User(profileToObject(token, refreshToken, profile));
     await newUser.save();
     done(null, newUser);
-})
+});

@@ -54,9 +54,7 @@ module.exports = function (passport) {
                 else {
                     return done(null, user);
                 }
-
             })
-
         }))
 
     // =========================================================================
@@ -128,9 +126,9 @@ module.exports = function (passport) {
             });
         }));
 
-    // =========================================================================
-    // GOOGLE ==================================================================
-    // =========================================================================
-    console.log(`${process.env.HOST}:${process.env.PORT}/${process.env.GOOGLE_AUTH_CALLBACK_URL}`)
+    // use google strategy
     passport.use(require('./google.strategy'));
+
+    // jwt strategy
+    passport.use(require('./jwt.strategy'));
 };
