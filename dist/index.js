@@ -1,7 +1,6 @@
 "use strict";
-//  index.js
-// set up ======================================================================
-// get all the tools we need
+//  index.ts
+Object.defineProperty(exports, "__esModule", { value: true });
 require('dotenv-safe').config();
 const express = require('express');
 const app = express();
@@ -11,9 +10,14 @@ const passport = require('passport');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-// configuration ===============================================================
-mongoose.connect(process.env.MONGODB_URL); // connect to our database
-require('./passport/init')(passport); // pass passport for configuration
+// mongodb setup
+mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true }, function (err) {
+    if (err)
+        throw err;
+    console.log("Database created!");
+});
+// passport setup
+require('./passport/init')(passport);
 // set up our express application
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
@@ -22,9 +26,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
-// routes ======================================================================
+// setup routes
 require('./routes/api')(app, passport); // load our routes and pass in our app and fully configured passport
-// launch ======================================================================
+// launch
 app.listen(port);
 console.log('The magic happens on port ' + port);
 //# sourceMappingURL=index.js.map

@@ -1,7 +1,9 @@
-//  index.js
+//  index.ts
 
 // set up ======================================================================
 // get all the tools we need
+import {MongoError} from "mongodb";
+
 require('dotenv-safe').config();
 
 const express = require('express')
@@ -13,10 +15,14 @@ const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
-// configuration ===============================================================
-mongoose.connect(process.env.MONGODB_URL); // connect to our database
+// mongodb setup
+mongoose.connect(process.env.MONGODB_URL, {useNewUrlParser: true}, function (err: MongoError) {
+    if (err) throw err;
+    console.log("Database created!");
+});
 
-require('./passport/init')(passport); // pass passport for configuration
+// passport setup
+require('./passport/init')(passport);
 
 // set up our express application
 app.use(morgan('dev')); // log every request to the console
@@ -28,10 +34,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-// routes ======================================================================
+// setup routes
 require('./routes/api')(app, passport); // load our routes and pass in our app and fully configured passport
 
-// launch ======================================================================
+// launch
 app.listen(port);
 console.log('The magic happens on port ' + port);
