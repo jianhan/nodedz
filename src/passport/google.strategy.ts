@@ -1,4 +1,4 @@
-import {User} from '../models/user.model'
+import {User} from '../models/user.model';
 import {Profile} from "passport-google-oauth";
 
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
