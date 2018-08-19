@@ -1,6 +1,15 @@
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 import {User} from '../models/user.model'
 
+function profileToObject(token: string, refreshToken: string, profile: any): object {
+    return {
+        'google.id': profile.id,
+        'google.token': token,
+        'google.display_name': profile.displayName,
+        'google.email': (profile.emails[0].value || '').toLowerCase()
+    }
+}
+
 module.exports = new GoogleStrategy({
     clientID: process.env.GOOGLE_AUTH_CLIENT_ID,
     clientSecret: process.env.GOOGLE_AUTH_CLIENT_SECRET,
@@ -13,15 +22,11 @@ module.exports = new GoogleStrategy({
 
     const existingUser = await User.findOne({"google.id": profile.id});
     if (existingUser) {
+        await existingUser.update(profileToObject(token, refreshToken, profile));
         return done(null, existingUser);
     }
 
-    let newUser = new User({
-        'google.id': profile.id,
-        'google.token': token,
-        'google.name': profile.displayName,
-        'google.email': (profile.emails[0].value || '').toLowerCase()
-    })
+    let newUser = new User(profileToObject(token, refreshToken, profile));
     await newUser.save();
     done(null, newUser);
 
