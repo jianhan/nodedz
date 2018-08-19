@@ -1,5 +1,14 @@
 version: '3'
 services:
+  app:
+    container_name: app
+    restart: always
+    build: .
+    ports:
+      - "8888:8888"
+    depends_on:
+      - mongodb
+      - redis
   mongodb:
     image: mongo:4.0.0
     container_name: dz-mongodb
@@ -9,6 +18,18 @@ services:
     ports:
       - 27017:27017
     command: mongod
+  redis:
+    image: redis:4.0.5-alpine
+    container_name: dz-redis
+    command: ["redis-server", "--appendonly", "yes"]
+    hostname: redis
+    networks:
+      - redis-net
+    volumes:
+      - redis-data:/data
+networks:
+  redis-net:
 volumes:
   mongodb:
   mongodb_config:
+  redis-data:

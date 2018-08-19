@@ -12,8 +12,9 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 // mongodb setup
 mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true }, function (err) {
-    if (err)
+    if (err) {
         throw err;
+    }
     console.log("Database created!");
 });
 // passport setup
