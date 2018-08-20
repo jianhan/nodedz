@@ -31,7 +31,7 @@ app.use(passport.session());
 require('./routes/api')(app, passport); // load our routes and pass in our app and fully configured passport
 // socket io
 const server = require('http').createServer(app);
-server.listen(3030);
+server.listen(process.env.SOCKET_IO_PORT);
 const io = require('socket.io')(server);
 io.on('connection', function (client) {
     console.log('Client connected...');

@@ -6,7 +6,7 @@ import {MongoError} from "mongodb";
 
 require('dotenv-safe').config();
 
-const express = require('express')
+const express = require('express');
 const app = express();
 const port = process.env.PORT || 8080;
 const mongoose = require('mongoose');
@@ -41,7 +41,7 @@ require('./routes/api')(app, passport); // load our routes and pass in our app a
 
 // socket io
 const server = require('http').createServer(app);
-server.listen(3030)
+server.listen(process.env.SOCKET_IO_PORT)
 const io = require('socket.io')(server);
 io.on('connection', function (client) {
     console.log('Client connected...');
