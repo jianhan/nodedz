@@ -1,9 +1,9 @@
 ///<reference path="../../node_modules/@types/node/index.d.ts"/>
+import {NextFunction, Request, Response} from "express";
 import {IUserModel} from "../models/user.model";
-import {NextFunction, Request, Response} from 'express';
 
-const JWT = require('jsonwebtoken');
-const User = require('../models/user.model');
+import * as JWT from "jsonwebtoken";
+const User = require("../models/user.model");
 
 class AuthController {
 
@@ -13,8 +13,8 @@ class AuthController {
             sub: user.id,
             iat: new Date().getTime(), // current time
             exp: new Date().setDate(new Date().getDate() + 1), // current time + 1 day ahead
-            saltLength: 10
-        }, process.env.JWT_SECRET)
+            saltLength: 10,
+        }, process.env.JWT_SECRET);
     }
 
     public async signUp(req: Request, res: Response, next: NextFunction) {
@@ -22,16 +22,16 @@ class AuthController {
         // Check if there is a user with the same email
         const foundUser = await User.findOne({"local.email": email});
         if (foundUser) {
-            return res.status(403).json({error: 'Email is already in use'});
+            return res.status(403).json({error: "Email is already in use"});
         }
 
         // Create a new user
         const newUser = new User({
-            method: 'local',
+            method: "local",
             local: {
-                email: email,
-                password: password
-            }
+                email,
+                password,
+            },
         });
         await newUser.save();
 
@@ -57,9 +57,8 @@ class AuthController {
 
     public async googleOAuthCallback(req: Request, res: Response, next: NextFunction) {
         const token = AuthController.signToken(req.user);
-        res.status(200).json({token: token, user: req.user});
+        res.status(200).json({token, user: req.user});
     }
 }
 
 export default new AuthController();
-

@@ -1,25 +1,20 @@
-import {User} from '../models/user.model';
 import {Profile} from "passport-google-oauth";
+import {User} from "../models/user.model";
 
-const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 
 function profileToObject(token: string, refreshToken: string, profile: Profile): object {
-    // Should have full user profile over here
-    console.log('profile', profile);
-    console.log('accessToken', token);
-    console.log('refreshToken', refreshToken);
-
     return {
-        'google.id': profile.id,
-        'google.token': token,
-        'google.display_name': profile.displayName,
-        'google.email': profile.emails ? (profile.emails[0].value || '').toLowerCase() : '',
-        'google.family_name': profile.name ? profile.name.familyName : '',
-        'google.given_name': profile.name ? profile.name.givenName : '',
-        'google.image_url': profile.photos ? profile.photos[0].value || '' : '',
-        'google.profile_data': profile._json,
-        'google.last_logged_in_at': (new Date()).toISOString()
-    }
+        "google.id": profile.id,
+        "google.token": token,
+        "google.display_name": profile.displayName,
+        "google.email": profile.emails ? (profile.emails[0].value || "").toLowerCase() : "",
+        "google.family_name": profile.name ? profile.name.familyName : "",
+        "google.given_name": profile.name ? profile.name.givenName : "",
+        "google.image_url": profile.photos ? profile.photos[0].value || "" : "",
+        "google.profile_data": profile._json,
+        "google.last_logged_in_at": (new Date()).toISOString(),
+    };
 }
 
 module.exports = new GoogleStrategy({
@@ -36,7 +31,7 @@ module.exports = new GoogleStrategy({
     }
 
     // create new user
-    let newUser = new User(profileToObject(token, refreshToken, profile));
+    const newUser = new User(profileToObject(token, refreshToken, profile));
     await newUser.save();
     done(null, newUser);
 });
